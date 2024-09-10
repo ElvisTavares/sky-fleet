@@ -1,18 +1,25 @@
 <template>
-<div>
-    <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn">Button</a></li>
-        <li><a class="waves-effect waves-light btn">Button <i class="material-icons right">cloud</i></a></li>
-        <li><a class="waves-effect waves-light btn-large">Large Button</a></li>
-      </ul>
+    <div class="columns is-multiline">
+      <div
+        v-for="product in data.products"
+        :key="product.id"
+        class="column is-one-quarter"
+      >
+        <ProductItem :product="product" />
+      </div>
     </div>
-  </nav>
-</div>
-
-</template>
-
-<script setup>
-</script>
+  </template>
+  
+  <script setup>
+  import ProductItem from './ProductItem.vue';
+  import { useCartStore } from '@/stores/useCartStore';
+  
+  const data = useCartStore()
+  </script>
+  
+  <style scoped>
+  .card {
+    margin: 20px;
+  }
+  </style>
+  
