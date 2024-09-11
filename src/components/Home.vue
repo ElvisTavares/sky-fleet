@@ -1,7 +1,7 @@
 <template>
     <div class="columns is-multiline">
       <div
-        v-for="product in data.products"
+        v-for="product in products"
         :key="product.id"
         class="column is-one-quarter"
       >
@@ -13,8 +13,15 @@
   <script setup>
   import ProductItem from './ProductItem.vue';
   import { useCartStore } from '@/stores/useCartStore';
-  
-  const data = useCartStore()
+  import { onMounted } from 'vue'
+  const cartStore = useCartStore()
+
+  onMounted(() => {
+    cartStore.fetchProducts()
+})
+
+const products = cartStore.products
+
   </script>
   
   <style scoped>
