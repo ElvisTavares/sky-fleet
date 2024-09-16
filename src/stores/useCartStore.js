@@ -20,6 +20,13 @@ export const useCartStore = defineStore('cart', {
         products : [],
         cartItems : []
     }),
+
+    getters: {
+        countCartItems(state) {
+            return state.cartItems.length
+        }
+    },
+
     actions : {
         async fetchProducts(){
             try {
@@ -29,9 +36,20 @@ export const useCartStore = defineStore('cart', {
             } catch(error) {
                 console.error('Erro ao buscar dados do produto', error)
             }
-        }
+        },
+
+        addToCart(item) {
+            let index = this.cartItems.findIndex(product => product.id === item.id)
+            if(index !== -1) {
+                this.cartItems[index].quantity += 1
+            } else {
+                item.quantity = 1
+                this.cartItems.push(item)
+            }
+          }
     },
     persist: {
         storage: localStorage, // ou sessionStorage se preferir
-      }
+      },
+
 })

@@ -15,21 +15,18 @@
     <div id="navbarBasic" class="navbar-menu" :class="{ 'is-active': isActive }">
       <div class="navbar-start">
         <a class="navbar-item" href="#">
-          Home
-        </a>
-
-        <a class="navbar-item" href="#">
-          Sobre
-        </a>
-
-        <a class="navbar-item" href="#">
-          Contato
+          Carrinho 
         </a>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
+          <a class="navbar-item" href="#">
+          <router-link class="nav-link" to="/cart"></router-link>
+          Carrinho {{ data.countCartItems }}
+        </a>
           <div class="buttons">
+            
             <a class="button is-primary">
               <strong>Sign up</strong>
             </a>
@@ -45,4 +42,7 @@
     </template>
     
     <script setup>
+        import { useCartStore } from '@/stores/useCartStore';
+
+const data = useCartStore()
     </script>

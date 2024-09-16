@@ -14,18 +14,21 @@
         </div>
   
         <div class="content">
-          Uma breve descrição do produto.
+          {{ product.description }}
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">Comprar</a>
-        <a href="#" class="card-footer-item">Adicionar ao Carrinho</a>
+
+        <a href="#" class="card-footer-item" @click="data.addToCart(product)">Adicionar ao Carrinho</a>
       </footer>
     </div>
   </template>
   
   <script setup>
 import { onMounted } from 'vue';
+import { useCartStore } from '@/stores/useCartStore';
+
+const data = useCartStore()
 
   const props = defineProps({
     product: {
