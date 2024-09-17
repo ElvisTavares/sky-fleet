@@ -21,18 +21,19 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <a class="navbar-item" href="#">
-          <router-link class="nav-link" to="/cart"></router-link>
-          Carrinho {{ data.countCartItems }}
-        </a>
+         
           <div class="buttons">
-            
-            <a class="button is-primary">
+            <a class="navbar-item" href="#">
+          <router-link class="nav-link" to="/cart">
+          Carrinho {{ data.countCartItems }}
+        </router-link>
+        </a>
+            <!-- <a class="button is-primary">
               <strong>Sign up</strong>
             </a>
             <a class="button is-light">
               Log in
-            </a>
+            </a> -->
           </div>
         </div>
       </div>

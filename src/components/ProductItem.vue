@@ -19,7 +19,7 @@
       </div>
       <footer class="card-footer">
 
-        <a href="#" class="card-footer-item" @click="data.addToCart(product)">Adicionar ao Carrinho</a>
+        <a class="card-footer-item" @click="data.addToCart(product)">Adicionar ao Carrinho</a>
       </footer>
     </div>
   </template>
