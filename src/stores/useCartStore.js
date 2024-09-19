@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { useToast } from "vue-toastification";
+
+const toast = useToast()
 
 export const useCartStore = defineStore('cart', {
     state: () => ({
@@ -42,9 +45,16 @@ export const useCartStore = defineStore('cart', {
             let index = this.cartItems.findIndex(product => product.id === item.id)
             if(index !== -1) {
                 this.cartItems[index].quantity += 1
+                toast.success("Your item has been saved", {
+                    timeout: 2000
+                  })
             } else {
                 item.quantity = 1
                 this.cartItems.push(item)
+
+                toast.success("Your item has been saved", {
+                    timeout: 2000
+                  })
             }
           }
     },
