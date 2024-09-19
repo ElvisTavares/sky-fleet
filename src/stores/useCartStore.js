@@ -80,6 +80,12 @@ export const useCartStore = defineStore('cart', {
                     timeout: 2000
                 })
             }
+          },
+          removeFromCart(item) {
+            this.cartItems = this.cartItems.filter(product => product.id !== item.id)
+            toast.success("Item removido com sucesso.", {
+                timeout: 2000
+            })
           }
     },
     persist: {

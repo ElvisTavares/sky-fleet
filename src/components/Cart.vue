@@ -13,6 +13,7 @@
             <th>Quantidade</th>
             <th>Preço</th>
             <th>Total</th>
+            <th></th>
            
           </tr>
         </thead>
@@ -26,7 +27,7 @@
               <span class="icon">
                 <i class="fa-solid fa-circle-arrow-up" 
                 style="margin-right: 5px;" 
-                @click="incrementQuantity(item)"></i>
+                @click="cartStore.incrementQuantity(item)"></i>
 
                 {{ item.quantity }}
 
@@ -34,6 +35,11 @@
               </span>
             </td>
             <td>{{item.price * item.quantity}}</td>
+            <td>
+              <span class="icon">
+              <i class="fa-solid fa-trash-can"  @click="cartStore.removeFromCart(item)"></i>
+              </span>
+            </td>
           </tr>
 
           <tr>
@@ -53,11 +59,6 @@
   <script setup>
       import { useCartStore } from '@/stores/useCartStore';
       const cartStore = useCartStore()
-
-      const incrementQuantity = (item) => {
-        cartStore.incrementQuantity(item);
-};
-
   </script>
   
   <style scoped>
