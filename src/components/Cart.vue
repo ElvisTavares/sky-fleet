@@ -30,7 +30,7 @@
 
                 {{ item.quantity }}
 
-                <i class="fa-solid fa-circle-arrow-down" style="margin-left: 5px;"></i>
+                <i class="fa-solid fa-circle-arrow-down" style="margin-left: 5px;" @click="cartStore.decrementQuantity(item)"></i>
               </span>
             </td>
             <td>{{item.price * item.quantity}}</td>

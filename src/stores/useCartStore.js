@@ -58,13 +58,25 @@ export const useCartStore = defineStore('cart', {
             }
           },
           incrementQuantity(item) {
-            console.log('i')
+     
             let index = this.cartItems.findIndex(product => product.id === item.id)
             if (index !== -1) {
                 
                 this.cartItems[index].quantity += 1
 
-                toast.success("O item fi adicionado com sucesso.", {
+                toast.success("O item foi adicionado com sucesso.", {
+                    timeout: 2000
+                })
+            }
+          },
+          decrementQuantity(item) {
+            let index = this.cartItems.findIndex(product => product.id === item.id)
+            if(index !== -1) {
+                this.cartItems[index].quantity -= 1
+                if(this.cartItems[index].quantity === 0) {
+                    this.cartItems = this.cartItems.filter(product => product.id !== item.id)
+                }
+                toast.success("O item foi removido com sucesso.", {
                     timeout: 2000
                 })
             }
