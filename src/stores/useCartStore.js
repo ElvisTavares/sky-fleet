@@ -56,6 +56,18 @@ export const useCartStore = defineStore('cart', {
                     timeout: 2000
                   })
             }
+          },
+          incrementQuantity(item) {
+            console.log('i')
+            let index = this.cartItems.findIndex(product => product.id === item.id)
+            if (index !== -1) {
+                
+                this.cartItems[index].quantity += 1
+
+                toast.success("O item fi adicionado com sucesso.", {
+                    timeout: 2000
+                })
+            }
           }
     },
     persist: {

@@ -17,12 +17,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in data.cartItems" :key="item.id">
+          <tr v-for="item in cartStore.cartItems" :key="item.id">
             <td>{{item.id}}</td>
             <td><img :src="item.image" alt="" width="60" height="60"></td>
             <td>{{ item.name }}</td>
             <td>{{ item.price }}</td>
-            <td>{{ item.quantity }}</td>
+            <td>
+              <span class="icon">
+                <i class="fa-solid fa-circle-arrow-up" 
+                style="margin-right: 5px;" 
+                @click="incrementQuantity(item)"></i>
+
+                {{ item.quantity }}
+
+                <i class="fa-solid fa-circle-arrow-down" style="margin-left: 5px;"></i>
+              </span>
+            </td>
             <td>{{item.price * item.quantity}}</td>
           </tr>
 
@@ -30,7 +40,7 @@
             <th>Total</th>
           <td>
             <span>
-              R$ {{ data.cartItems.reduce((acc, item) => acc += item.price * item.quantity, 0) }}
+              R$ {{ cartStore.cartItems.reduce((acc, item) => acc += item.price * item.quantity, 0) }}
             </span>
           </td>
           </tr>
@@ -42,7 +52,12 @@
   
   <script setup>
       import { useCartStore } from '@/stores/useCartStore';
-      const data = useCartStore()
+      const cartStore = useCartStore()
+
+      const incrementQuantity = (item) => {
+        cartStore.incrementQuantity(item);
+};
+
   </script>
   
   <style scoped>
@@ -53,6 +68,10 @@
   
   .title {
     margin-bottom: 30px;
+  }
+
+  i{
+    cursor: pointer;
   }
   </style>
   
