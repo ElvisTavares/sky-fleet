@@ -32,12 +32,17 @@ export const useCartStore = defineStore('cart', {
 
     actions : {
         async fetchProducts(){
+            this.isLoading = true
+            this.products = []
             try {
-                const response = await axios.get('http://localhost:3000/products')
+                const response = await axios.get('https://my-json-server.typicode.com/ElvisTavares/sky-fleet-api/products')
            
                 this.products = response.data
+              
             } catch(error) {
                 console.error('Erro ao buscar dados do produto', error)
+            }finally {
+                this.isLoading = false
             }
         },
 
@@ -87,6 +92,9 @@ export const useCartStore = defineStore('cart', {
                 timeout: 2000
             })
           }
+    },
+    resetStore() {
+        this.$reset()
     },
     persist: {
         storage: localStorage, // ou sessionStorage se preferir
